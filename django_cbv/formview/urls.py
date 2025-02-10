@@ -12,7 +12,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
 
     path('form/',FormClass.as_view(), name = 'forms'),
-    path('list/',ListViewPage.as_view(), name = 'listView'),
+    path('',ListViewPage.as_view(), name = 'listView'),
     path("detail/<slug:slug>/", DetailViewPage.as_view(), name="detail"),
     path('delete/<slug:slug>/',DeleteViewPage.as_view(), name='delete'),
     path('edit/<slug:slug>/',UpdateViewPage.as_view(), name='edit'),
