@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light my-3 mx-3">
+    <div class="container-fluid">
+      <a class="navbar-brand px-5 " href="">user: {{user}}</a>
+      
+      {%if user.is_authenticated%}
+      <form action="{%url 'form_views:logout'%}" method="post">
+        {%csrf_token%}
+        <button class="btn btn-danger rounded-pill px-3 my-3" type="submit">Logout</button>
+
+      </form>
+      <button class="btn btn-danger rounded-pill px-3 mx-5 " type="submit"><a class="text-light" href="{%url 'form_views:forms'%}">+ ADD</a></button>
+
+      {% else %}
+      <a class="navbar-brand px-5 " href="{%url 'form_views:login'%}">login</a>
+      <a class="navbar-brand px-5 " href="{%url 'form_views:signup'%}">signup</a>
+      {%endif%}
+    </div>
+  </nav>
+
+  <div class ="pt-3 px-5">
+    <h2>All Author's</h2>
+  </div>
+    {% for author in list%}
+    <div class="ps-5 py-3 pt-5 border-end-0 w-50">
+        <h3><a class="py-5" href="{%url 'form_views:detail' author.slug %}">{{author.name}}</a></h3>
+        <p class="ps-5 list-group-item">{{author.title}}</a></p>
+    
+        <span class="px-5">{{author.date|date:'Y-m-d'}}</span>
+        {% if author.username == request.user %}
+        <a href="{%url 'form_views:edit' author.slug%}"> <button class="btn btn-success px-5 rounded-pill">update</button></a>
+        {% endif %}
+    </div>
+    {%endfor%}
+</html>

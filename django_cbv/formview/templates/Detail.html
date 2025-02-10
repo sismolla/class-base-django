@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+         <div class="w-50 ps-5 mt-5">
+            <h1 class="px-3 py-5 mb-3 ">{{detail.title}}</h1>
+            <p class="w-50 container text-xl-center fs-3">{{detail.message}}</p>
+            <span class="px-5">{{detail.date|date:'Y-m-d'}}</span>
+         </div>
+
+         <a class="px-5" href="{%url 'form_views:listView'%}"><button class="mt-5 btn mb-3 px-5 btn-primary rounded-pill"> back </button></a>
+        
+         {% if detail.username == request.user %}
+         <a class="px-5" href="{%url 'form_views:delete' object.slug%}"><button class="mt-5 btn mb-3 px-5 btn-danger rounded-pill"> Delete </button></a>
+         {% endif %}
+</body>
+</html>
