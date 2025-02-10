@@ -30,7 +30,7 @@ class SignupViewPage(FormView):
     model = User
     form_class = SignupForm
     template_name = 'signup.html'
-    success_url = reverse_lazy('form_views:listView')
+    success_url = reverse_lazy('form_views:login')
 
     def form_valid(self, form):
         if form.is_valid():
